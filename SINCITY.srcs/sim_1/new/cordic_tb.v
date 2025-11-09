@@ -2,18 +2,17 @@
 
 module cordic_tb;
 
-    // Clock, reset, start
+    
     reg clk;
     reg rst;
     reg start;
-    //reg trit;
-    // Inputs and outputs
-    reg  signed [15:0] angle;       // Q2.14 fixed-point angle (radians)
+    
+    reg  signed [15:0] angle;       
     wire signed [15:0] cos_out;
     wire signed [15:0] sin_out;
     wire done;
 
-    // Instantiate DUT
+    
     cordic uut (
         .clk(clk),
         .rst(rst),
@@ -24,13 +23,13 @@ module cordic_tb;
         .done(done)
     );
 
-    // Clock generation: 100 MHz (period = 10 ns)
+    
     initial begin
         clk = 0;
         forever #5 clk = ~clk;
     end
 
-    // Helper: convert degrees → Q2.14 radians
+    
     function signed [15:0] deg_to_q214;
         input real deg;
         real rad;
@@ -49,19 +48,19 @@ module cordic_tb;
     real trit;
 
     initial begin
-        // Initialize
+        
         rst = 1; start = 0; angle = 0;
         #20;
         rst = 0;
 
-        // Test angles
+       
         deg_list[0] = 0.0;
         deg_list[1] = 30.0;
         deg_list[2] = 45.0;
         deg_list[3] = 60.0;
         deg_list[4] = 90.0;
 
-        // Run tests
+        
         for (i = 0; i < 5; i = i + 1) begin
             angle = deg_to_q214(deg_list[i]);
             start = 1; #10; start = 0;
