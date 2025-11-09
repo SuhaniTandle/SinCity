@@ -1,0 +1,4 @@
+## Inference from Simulation Screenshot
+The simulation output waveform shows the CORDIC module’s cosine and sine computations for different input angles.
+As the start signal is asserted, the module processes each angle, and after completing all iterations, the done signal goes high, indicating valid results. The outputs cos_out and sin_out (in Q2.14 fixed-point format) match the expected trigonometric values for angles like 0°, 30°, 45°, and 60°, confirming that the CORDIC algorithm accurately computes sine and cosine using shift-and-add operations without multipliers. This verifies that the design successfully performs iterative vector rotations to compute sine and cosine with minimal error, making it suitable for FPGA-based digital signal processing applications. 
+To optimize algorithm i.e to decrease the value of error number of iterations should be increased (n).
